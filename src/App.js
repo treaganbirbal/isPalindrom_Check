@@ -7,8 +7,8 @@ class App extends React.Component {
     super();
 
     this.state = {
-      currentWord: [],
-      reversedWord: []
+      currentWord: '',
+      reversedWord: ''
     };
   }
 
@@ -20,16 +20,33 @@ class App extends React.Component {
 
   handleSubmit = (event) =>{
     event.preventDefault();
+    let revs = this.state.currentWord.split('').reverse().join('')
+    this.setState({
+      reversedWord: revs
+    })
+  }
+
+  palindronCheck = () => {
+    if(this.state.currentWord === this.state.reversedWord.split('').reverse().join('')){
+      return(
+        <p>{this.state.reversedWord}</p>
+      )
+    }
+    else {
+      return(
+        <p>Not A Palindrome!</p>
+      )
+    }
   }
   render() {
     return (
       <>
         <form action="" onSubmit={this.handleSubmit}>
           <input type="text" onChange={this.handleChange} placeholder='enter word here' name="currentWord" id="" />
-          <input type="submit"/>
-          <div className="pal-reveal">
+          <input onClick={this.palindronCheck} type="submit"/>
+          <div className="reveal">
             Your word: <span>{this.state.currentWord}</span>
-            <span className="reversed-word"></span>
+            Reversed: <span className="reversed-word">{this.palindronCheck()}</span>
           </div>
         </form>
       </>
