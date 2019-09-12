@@ -22,6 +22,7 @@ class App extends React.Component {
     event.preventDefault();
     let revs = this.state.currentWord.split('').reverse().join('')
     this.setState({
+      currentWord: '',
       reversedWord: revs
     })
   }
@@ -45,8 +46,8 @@ class App extends React.Component {
           <input type="text" onChange={this.handleChange} placeholder='enter word here' name="currentWord" id="" />
           <input onClick={this.palindronCheck} type="submit"/>
           <div className="reveal">
-            Your word: <span>{this.state.currentWord}</span>
-            Reversed: <span className="reversed-word">{this.palindronCheck()}</span>
+            Your first word: <span>{this.state.currentWord}</span>
+            Your second word: <span className="reversed-word">{this.palindronCheck()}</span>
           </div>
         </form>
       </>
