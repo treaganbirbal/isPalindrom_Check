@@ -24,8 +24,9 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <form action="">
+        <form action="" onSubmit={this.handleSubmit}>
           <input type="text" onChange={this.handleChange} placeholder='enter word here' name="currentWord" id="" />
+          <input type="submit"/>
           <div className="pal-reveal">
             Your word: <span>{this.state.currentWord}</span>
             <span className="reversed-word"></span>
