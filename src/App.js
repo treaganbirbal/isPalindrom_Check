@@ -11,13 +11,23 @@ class App extends React.Component {
       reversedWord: []
     };
   }
+
+  handleChange = (event) => {
+    this.setState({
+      currentWord: event.target.value
+    })
+  }
+
+  handleSubmit = (event) =>{
+    event.preventDefault();
+  }
   render() {
     return (
       <>
         <form action="">
-          <input type="text" placeholder='enter word here'name="currentWord" id="" />
+          <input type="text" onChange={this.handleChange} placeholder='enter word here' name="currentWord" id="" />
           <div className="pal-reveal">
-            <span></span>
+            Your word: <span>{this.state.currentWord}</span>
             <span className="reversed-word"></span>
           </div>
         </form>
