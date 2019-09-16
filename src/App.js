@@ -27,7 +27,7 @@ class App extends React.Component {
   handleSubmit = (event) =>{
     event.preventDefault();
     let original = this.state.firstWord;
-    let revs = this.state.firstWord.split('').reverse().join('')
+    let revs = this.state.secondWord;
     this.setState({
       firstWord: original,
       secondWord: revs,
@@ -38,7 +38,7 @@ class App extends React.Component {
   palindronCheck = () => {
     if(this.state.firstWord === this.state.secondWord.split('').reverse().join('')){
       return(
-        <p>These words are Palindrone</p>
+        <p>These words are Palindrome</p>
       )
     }
     else {
@@ -50,17 +50,19 @@ class App extends React.Component {
   render() {
     return (
       <>
-        {/* <form action="" onSubmit={this.handleSubmit}> */}
+        <form action="" onSubmit={this.handleSubmit} onClick={this.palindronCheck}>
           <input type="text" onChange={this.handleFirstWordChange} placeholder='enter first word here' name="currentWord" id="" />
           <input type="text" name="enter second word here" id="" onChange={this.handleSecondWordChange}/>
-          <input  type="submit" onClick={this.palindronCheck}/>
+          <input  type="submit" />
           <div className="reveal">
             Your first word: <span>{this.state.firstWord}</span>
             Your second word: <span className="reversed-word">{this.state.secondWord}</span>
           </div>
-        {/* </form> */}
-        {/* { this.state.submitted ? this.palindronCheck() : null } */}
-      </>
+        </form>
+        { this.state.submitted && this.state.firstWord === this.state.secondWord.split('').reverse().join('') ?
+          <h1>These words are Palindrome</h1> : <h1>These words are not Palindrome</h1>
+        }
+        </>
     );
   }
 }
