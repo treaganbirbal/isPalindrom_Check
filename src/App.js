@@ -7,30 +7,38 @@ class App extends React.Component {
     super();
 
     this.state = {
-      currentWord: '',
-      reversedWord: ''
+      firstWord: '',
+      secondWord: '',
+      submitted: false,
     };
   }
 
-  handleChange = (event) => {
+  handleFirstWordChange = (event) => {
     this.setState({
-      currentWord: event.target.value
+      firstWord: event.target.value
+    })
+  }
+  handleSecondWordChange = (event) => {
+    this.setState({
+      secondWord: event.target.value
     })
   }
 
   handleSubmit = (event) =>{
     event.preventDefault();
-    let revs = this.state.currentWord.split('').reverse().join('')
+    let original = this.state.firstWord;
+    let revs = this.state.firstWord.split('').reverse().join('')
     this.setState({
-      currentWord: '',
-      reversedWord: revs
+      firstWord: original,
+      secondWord: revs,
+      submitted: true
     })
   }
 
   palindronCheck = () => {
-    if(this.state.currentWord === this.state.reversedWord.split('').reverse().join('')){
+    if(this.state.firstWord === this.state.secondWord.split('').reverse().join('')){
       return(
-        <p>{this.state.reversedWord}</p>
+        <p>These words are Palindrone</p>
       )
     }
     else {
@@ -42,14 +50,16 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <form action="" onSubmit={this.handleSubmit}>
-          <input type="text" onChange={this.handleChange} placeholder='enter word here' name="currentWord" id="" />
-          <input onClick={this.palindronCheck} type="submit"/>
+        {/* <form action="" onSubmit={this.handleSubmit}> */}
+          <input type="text" onChange={this.handleFirstWordChange} placeholder='enter first word here' name="currentWord" id="" />
+          <input type="text" name="enter second word here" id="" onChange={this.handleSecondWordChange}/>
+          <input  type="submit" onClick={this.palindronCheck}/>
           <div className="reveal">
-            Your first word: <span>{this.state.currentWord}</span>
-            Your second word: <span className="reversed-word">{this.palindronCheck()}</span>
+            Your first word: <span>{this.state.firstWord}</span>
+            Your second word: <span className="reversed-word">{this.state.secondWord}</span>
           </div>
-        </form>
+        {/* </form> */}
+        {/* { this.state.submitted ? this.palindronCheck() : null } */}
       </>
     );
   }
