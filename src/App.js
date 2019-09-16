@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 class App extends React.Component {
@@ -51,8 +50,8 @@ class App extends React.Component {
     return (
       <>
         <form action="" onSubmit={this.handleSubmit} onClick={this.palindronCheck}>
-          <input type="text" onChange={this.handleFirstWordChange} placeholder='enter first word here' name="currentWord" id="" />
-          <input type="text" name="enter second word here" id="" onChange={this.handleSecondWordChange}/>
+          <input type="text" onChange={this.handleFirstWordChange} placeholder='enter first word here' className="currentWord" id="" />
+          <input type="text" name="enter second word here" id="" placeholder='enter second word here' donChange={this.handleSecondWordChange}/>
           <input  type="submit" />
           <div className="reveal">
             Your first word: <span>{this.state.firstWord}</span>
